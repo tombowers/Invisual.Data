@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Invisual.Data.Linq.QueryHandling.QueryTranslation;
+using System;
 using System.Linq.Expressions;
 
 namespace Invisual.Data.Linq.QueryHandling
@@ -12,7 +13,9 @@ namespace Invisual.Data.Linq.QueryHandling
 
 		public static T Execute<T>(this Expression expression, ISqlDataSource dataSource)
 		{
-			throw new NotImplementedException();
+			var query = new QueryTranslator(expression).GetSql();
+
+			return default(T);
 		}
 	}
 }

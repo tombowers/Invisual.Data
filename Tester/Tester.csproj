@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{50091675-BF11-47F2-8D2F-9C5BCD47B942}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{5290FFE9-8D9D-4636-B5DB-C5ECAAEED166}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Invisual.Data.Linq</RootNamespace>
-    <AssemblyName>Invisual.Data.Linq</AssemblyName>
+    <RootNamespace>Tester</RootNamespace>
+    <AssemblyName>Tester</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -39,22 +41,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\TypeSystem.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DatabaseTable.cs" />
-    <Compile Include="QueryHandling\ExpressionExtensions.cs" />
-    <Compile Include="QueryHandling\QueryTranslation\IQueryTranslator.cs" />
-    <Compile Include="QueryHandling\QueryTranslation\QueryTranslator.cs" />
-    <Compile Include="QueryHandling\QueryTranslation\SqlSegmentTranslators\TakeTranslator.cs" />
-    <Compile Include="QueryHandling\QueryTranslation\SqlSegmentTranslators\WhereTranslator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Invisual.Data.Linq\Invisual.Data.Linq.csproj">
+      <Project>{50091675-bf11-47f2-8d2f-9c5bcd47b942}</Project>
+      <Name>Invisual.Data.Linq</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Invisual.Data.SqlServer\Invisual.Data.SqlServer.csproj">
+      <Project>{ab7eed06-7948-47cf-9d65-691c8dd6b2c1}</Project>
+      <Name>Invisual.Data.SqlServer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Invisual.Data\Invisual.Data.csproj">
       <Project>{30659af4-8602-4a03-b0fb-10c4df1e22a1}</Project>
       <Name>Invisual.Data</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

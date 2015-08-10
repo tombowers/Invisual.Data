@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Invisual.Data.SqlServer", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Invisual.Data.MySql", "Invisual.Data.MySql\Invisual.Data.MySql.csproj", "{3C5494E3-7E37-4EC4-B1B6-6B514D86DB04}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Utilities", "_Utilities", "{7A23FACE-F010-4C12-829C-D5CFF967594D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tester", "Tester\Tester.csproj", "{5290FFE9-8D9D-4636-B5DB-C5ECAAEED166}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,8 +37,15 @@ Global
 		{3C5494E3-7E37-4EC4-B1B6-6B514D86DB04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C5494E3-7E37-4EC4-B1B6-6B514D86DB04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C5494E3-7E37-4EC4-B1B6-6B514D86DB04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5290FFE9-8D9D-4636-B5DB-C5ECAAEED166}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5290FFE9-8D9D-4636-B5DB-C5ECAAEED166}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5290FFE9-8D9D-4636-B5DB-C5ECAAEED166}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5290FFE9-8D9D-4636-B5DB-C5ECAAEED166}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5290FFE9-8D9D-4636-B5DB-C5ECAAEED166} = {7A23FACE-F010-4C12-829C-D5CFF967594D}
 	EndGlobalSection
 EndGlobal
