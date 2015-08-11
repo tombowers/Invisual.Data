@@ -135,7 +135,7 @@ namespace Invisual.Data.Linq.QueryHandling.QueryTranslation.SqlSegmentTranslator
 
 			_sql.AppendFormat("SELECT * FROM ({0}) AS T WHERE ", Visit(node.Arguments[0]));
 
-			var lambda = (LambdaExpression)StripQuotes(node.Arguments[1]);
+			var lambda = (LambdaExpression)node.Arguments[1].StripQuotes();
 			Visit(lambda.Body);
 
 			return node;
@@ -156,13 +156,5 @@ namespace Invisual.Data.Linq.QueryHandling.QueryTranslation.SqlSegmentTranslator
 
 		//	return node;
 		//}
-
-		private static Expression StripQuotes(Expression expression)
-		{
-			while (expression.NodeType == ExpressionType.Quote)
-				expression = ((UnaryExpression)expression).Operand;
-
-			return expression;
-		}
 	}
 }

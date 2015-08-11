@@ -17,5 +17,13 @@ namespace Invisual.Data.Linq.QueryHandling
 
 			return default(T);
 		}
+
+		public static Expression StripQuotes(this Expression expression)
+		{
+			while (expression.NodeType == ExpressionType.Quote)
+				expression = ((UnaryExpression)expression).Operand;
+
+			return expression;
+		}
 	}
 }
