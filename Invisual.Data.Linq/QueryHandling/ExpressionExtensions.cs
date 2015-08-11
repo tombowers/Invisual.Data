@@ -13,7 +13,7 @@ namespace Invisual.Data.Linq.QueryHandling
 
 		public static T Execute<T>(this Expression expression, ISqlDataSource dataSource)
 		{
-			var query = new QueryTranslator(expression).GetSql();
+			var query = new QueryTranslator<T>(expression).GetSql();
 
 			return default(T);
 		}

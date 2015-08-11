@@ -9,6 +9,9 @@ namespace Invisual.Data.Linq.QueryHandling.QueryTranslation.SqlSegmentTranslator
 	{
 		private readonly StringBuilder _sql;
 
+		// TODO: Query parameters
+		// TODO: Table aliases?
+
 		public WhereTranslator(Expression expression)
 		{
 			if (expression == null)

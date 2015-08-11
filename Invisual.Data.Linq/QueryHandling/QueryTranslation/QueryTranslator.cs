@@ -7,9 +7,10 @@ using System.Text;
 
 namespace Invisual.Data.Linq.QueryHandling.QueryTranslation
 {
-	public class QueryTranslator : ExpressionVisitor, IQueryTranslator
+	public class QueryTranslator<TTable> : ExpressionVisitor, IQueryTranslator
 	{
 		private readonly List<Expression> _whereClauses;
+		private int? _take;
 
 		public QueryTranslator(Expression expression)
 		{
@@ -23,17 +24,11 @@ namespace Invisual.Data.Linq.QueryHandling.QueryTranslation
 
 		public string GetSql()
 		{
-			if (!_whereClauses.Any())
-				return string.Empty;
-
-			var searchConditions = _whereClauses.Select(c => new WhereTranslator(c).GetSql()).ToList();
-
 			var sql = new StringBuilder();
-			sql.AppendLine("WHERE");
-			sql.AppendLine(searchConditions[0]);
 
-			for (var i = 1; i < searchConditions.Count(); i++)
-				sql.AppendFormat("AND {0}", searchConditions[i]);
+			AddSelectStatement(sql);
+			AddWhereClauses(sql);
+			AddOrderByStatement(sql);
 
 			return sql.ToString();
 		}
@@ -50,6 +45,11 @@ namespace Invisual.Data.Linq.QueryHandling.QueryTranslation
 
 					break;
 
+				case "Take":
+					_take = (int?)((ConstantExpression)node.Arguments[1]).Value;
+
+					break;
+
 				default:
 					return base.VisitMethodCall(node);
 			}
@@ -57,6 +57,37 @@ namespace Invisual.Data.Linq.QueryHandling.QueryTranslation
 			Visit(node.Arguments[0]);
 
 			return node;
+		}
+
+		private void AddSelectStatement(StringBuilder sql)
+		{
+			// TODO: Include TOP (Think about MySql LIMIT. Do we need a separate translator to account for syntactical differences?)
+			sql.AppendFormat(
+				"SELECT{0} {1} FROM {2}",
+				_take.HasValue ? string.Format(" TOP {0}", _take) : "",
+				"*", // TODO: Select fields based on attributes
+				typeof(TTable).Name
+				)
+				.AppendLine();
+		}
+
+		private void AddWhereClauses(StringBuilder sql)
+		{
+			if (!_whereClauses.Any())
+				return;
+
+			var searchConditions = _whereClauses.Select(c => new WhereTranslator(c).GetSql()).ToList();
+
+			sql.AppendLine("WHERE");
+			sql.AppendLine(searchConditions[0]);
+
+			for (var i = 1; i < searchConditions.Count(); i++)
+				sql.AppendFormat("AND {0}", searchConditions[i]);
+		}
+
+		private void AddOrderByStatement(StringBuilder sql)
+		{
+
 		}
 	}
 }

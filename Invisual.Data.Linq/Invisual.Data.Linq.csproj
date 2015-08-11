@@ -45,7 +45,6 @@
     <Compile Include="QueryHandling\ExpressionExtensions.cs" />
     <Compile Include="QueryHandling\QueryTranslation\IQueryTranslator.cs" />
     <Compile Include="QueryHandling\QueryTranslation\QueryTranslator.cs" />
-    <Compile Include="QueryHandling\QueryTranslation\SqlSegmentTranslators\TakeTranslator.cs" />
     <Compile Include="QueryHandling\QueryTranslation\SqlSegmentTranslators\WhereTranslator.cs" />
   </ItemGroup>
   <ItemGroup>
